@@ -37,7 +37,7 @@ public class PhotoView extends AppCompatImageView {
     private ScaleType pendingScaleType;
     private PhotoViewAttacher attacher = null;
     private int lastWidth = -1, lastHeight = -1;
-    private boolean noUpdate;
+    private boolean noUpdate = false;
 
     public PhotoView(Context context) {
         super(context, null);
@@ -106,11 +106,11 @@ public class PhotoView extends AppCompatImageView {
     public void setImageBitmap(Bitmap bm) {
         if ((bm != null)) {
             int width = bm.getWidth(), height = bm.getHeight();
-            if ((width == lastWidth) && (height == lastHeight)) {
-                noUpdate = true;
-                lastWidth = width;
-                lastHeight = height;
-            }
+            noUpdate = ((width == lastWidth) && (height == lastHeight));
+            lastWidth = width;
+            lastHeight = height;
+        } else {
+            noUpdate = false;
         }
         super.setImageBitmap(bm);
     }
@@ -119,9 +119,8 @@ public class PhotoView extends AppCompatImageView {
     public void setImageDrawable(Drawable drawable) {
         super.setImageDrawable(drawable);
         // setImageBitmap calls through to this method
-        if ((attacher != null) && (!noUpdate)) {
-            attacher.update();
-        }
+        if ((attacher != null) && (!noUpdate)) attacher.update();
+        noUpdate = false;
     }
 
     @Override
