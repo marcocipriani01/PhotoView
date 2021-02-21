@@ -13,7 +13,7 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 }
 
 afterEvaluate {
@@ -22,18 +22,18 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
-                group = 'com.github.chrisbanes'
-                artifactId = 'PhotoView'
-                version = '2.3.0'
+                group = 'io.github.marcocipriani01'
+                artifactId = 'LivePhotoView'
+                version = '1.0.0'
 
                 // Adds javadocs and sources as separate jars.
                 artifact androidJavadocsJar
                 artifact(sourceJar)
 
                 pom {
-                    name = 'PhotoView'
-                    description = 'A simple ImageView that support zooming, both by Multi-touch gestures and double-tap.'
-                    url = 'https://github.com/Baseflow/PhotoView'
+                    name = 'LivePhotoView'
+                    description = 'A simple ImageView that support zooming, and maintains it while switching between images.'
+                    url = 'https://github.com/marcocipriani01/PhotoView'
                     licenses {
                         license {
                             name = 'The Apache License, Version 2.0'
@@ -42,14 +42,14 @@ afterEvaluate {
                     }
                     developers {
                         developer {
-                            id = 'chrisbanes'
-                            name = 'Chris Banes'
+                            id = 'marcocipriani01'
+                            name = 'Marco Cipriani'
                         }
                     }
                     scm {
-                        connection = 'scm:git@github.com/chrisbanes/PhotoView.git'
-                        developerConnection = 'scm:git@github.com/chrisbanes/PhotoView.git'
-                        url = 'https://github.com/chrisbanes/PhotoView'
+                        connection = 'scm:git@github.com/marcocipriani01/PhotoView.git'
+                        developerConnection = 'scm:git@github.com/marcocipriani01/PhotoView.git'
+                        url = 'https://github.com/marcocipriani01/PhotoView'
                     }
                 }
             }

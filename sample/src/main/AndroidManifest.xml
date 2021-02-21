@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.github.chrisbanes.photoview.sample">
+    package="com.github.marcocipriani01.livephotoview.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".LauncherActivity">
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,21 +20,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SimpleSampleActivity" />
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.SimpleSampleActivity" />
 
-        <activity android:name=".ViewPagerActivity" />
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.ViewPagerActivity" />
 
-        <activity android:name=".RotationSampleActivity" />
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.RotationSampleActivity" />
 
-        <activity android:name=".PicassoSampleActivity" />
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.PicassoSampleActivity" />
 
-        <activity android:name=".CoilSampleActivity" />
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.ActivityTransitionActivity" />
 
-        <activity android:name=".ActivityTransitionActivity" />
-
-        <activity android:name=".ActivityTransitionToActivity" />
-
-        <activity android:name=".ImmersiveActivity" />
+        <activity android:name="io.github.marcocipriani01.livephotoview.sample.ActivityTransitionToActivity" />
     </application>
 
 </manifest>
