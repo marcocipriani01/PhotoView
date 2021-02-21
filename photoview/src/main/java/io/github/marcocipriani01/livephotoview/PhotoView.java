@@ -34,25 +34,35 @@ import androidx.appcompat.widget.AppCompatImageView;
 @SuppressWarnings("unused")
 public class PhotoView extends AppCompatImageView {
 
-    private final PhotoViewAttacher attacher;
+    private ScaleType pendingScaleType;
+    private PhotoViewAttacher attacher = null;
     private int lastWidth = -1, lastHeight = -1;
     private boolean noUpdate;
+
     public PhotoView(Context context) {
         super(context, null);
-        attacher = new PhotoViewAttacher(this);
-        super.setScaleType(ScaleType.MATRIX);
+        init();
     }
 
     public PhotoView(Context context, AttributeSet attr) {
         super(context, attr, 0);
-        attacher = new PhotoViewAttacher(this);
-        super.setScaleType(ScaleType.MATRIX);
+        init();
     }
 
     public PhotoView(Context context, AttributeSet attr, int defStyle) {
         super(context, attr, defStyle);
+        init();
+    }
+
+    private void init() {
         attacher = new PhotoViewAttacher(this);
+        // We always pose as a Matrix scale type, though we can change to another scale type via the attacher
         super.setScaleType(ScaleType.MATRIX);
+        // Apply the previously applied scale type
+        if (pendingScaleType != null) {
+            setScaleType(pendingScaleType);
+            pendingScaleType = null;
+        }
     }
 
     public void setBaseRotation(float degrees) {
@@ -70,7 +80,11 @@ public class PhotoView extends AppCompatImageView {
 
     @Override
     public void setScaleType(ScaleType scaleType) {
-        attacher.setScaleType(scaleType);
+        if (attacher == null) {
+            pendingScaleType = scaleType;
+        } else {
+            attacher.setScaleType(scaleType);
+        }
     }
 
     @Override
