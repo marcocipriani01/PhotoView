@@ -104,13 +104,15 @@ public class PhotoView extends AppCompatImageView {
 
     @Override
     public void setImageBitmap(Bitmap bm) {
-        if ((bm != null)) {
+        if (bm == null) {
+            noUpdate = false;
+            lastWidth = -1;
+            lastHeight = -1;
+        } else {
             int width = bm.getWidth(), height = bm.getHeight();
             noUpdate = ((width == lastWidth) && (height == lastHeight));
             lastWidth = width;
             lastHeight = height;
-        } else {
-            noUpdate = false;
         }
         super.setImageBitmap(bm);
     }
